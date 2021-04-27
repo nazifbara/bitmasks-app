@@ -1,9 +1,14 @@
+import { useState } from 'react';
+
 function App() {
+  const [cities, setCities] = useState([...CITIES]);
+
   function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
     console.log(`The submitted offset is: ${form['offset'].value}`);
   }
+
   return (
     <>
       <h1>Bitmasks App</h1>
@@ -12,7 +17,7 @@ function App() {
         <button>Find cities</button>
       </form>
       <ul>
-        {CITIES.map((city) => (
+        {cities.map((city) => (
           <li key={city.name}>
             {city.name + ': GMT'} {city.gmt >= 0 ? '+' + city.gmt : city.gmt}
           </li>
