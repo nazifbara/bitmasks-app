@@ -1,5 +1,5 @@
 function App() {
-  function handSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
     console.log(`The submitted offset is: ${form['offset'].value}`);
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <h1>Bitmasks App</h1>
-      <form onSubmit={handSubmit}>
+      <form onSubmit={handleSubmit}>
         <input name="offset" type="number" />
         <button>Find cities</button>
       </form>
