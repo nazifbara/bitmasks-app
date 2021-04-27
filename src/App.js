@@ -66,7 +66,18 @@ const CITIES = [
 ];
 
 function App() {
-  return <h1>hello</h1>;
+  return (
+    <>
+      <h1>Bitmasks App</h1>
+      <ul>
+        {CITIES.map((city) => (
+          <li>
+            {city.name + ': GMT'} {city.gmt >= 0 ? '+' + city.gmt : city.gmt}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 }
 
 export default App;
