@@ -5,8 +5,18 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const form = e.target;
-    console.log(`The submitted offset is: ${form['offset'].value}`);
+    const offset = e.target['offset'].value;
+    const filteredCities = findCities(offset);
+    setCities(filteredCities);
+  }
+
+  function findCities(offset) {
+    if (!offset) {
+      return CITIES;
+    }
+    return CITIES.filter((city) => {
+      return !(city.gmt ^ offset);
+    });
   }
 
   return (
