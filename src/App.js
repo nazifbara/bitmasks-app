@@ -1,3 +1,27 @@
+function App() {
+  function handSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    console.log(`The submitted offset is: ${form['offset'].value}`);
+  }
+  return (
+    <>
+      <h1>Bitmasks App</h1>
+      <form onSubmit={handSubmit}>
+        <input name="offset" type="number" />
+        <button>Find cities</button>
+      </form>
+      <ul>
+        {CITIES.map((city) => (
+          <li key={city.name}>
+            {city.name + ': GMT'} {city.gmt >= 0 ? '+' + city.gmt : city.gmt}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
 const CITIES = [
   {
     name: 'Moscow',
@@ -52,32 +76,17 @@ const CITIES = [
     gmt: 9,
   },
   {
-    name: 'Moscow',
+    name: 'Beijing',
     gmt: 8,
   },
   {
-    name: 'Moscow',
+    name: 'Ho Chi Mihn City',
     gmt: 7,
   },
   {
-    name: 'Moscow',
+    name: 'Mumbai',
     gmt: 5,
   },
 ];
-
-function App() {
-  return (
-    <>
-      <h1>Bitmasks App</h1>
-      <ul>
-        {CITIES.map((city) => (
-          <li>
-            {city.name + ': GMT'} {city.gmt >= 0 ? '+' + city.gmt : city.gmt}
-          </li>
-        ))}
-      </ul>
-    </>
-  );
-}
 
 export default App;
