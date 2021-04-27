@@ -26,13 +26,17 @@ function App() {
         <input name="offset" type="number" />
         <button>Find cities</button>
       </form>
-      <ul>
-        {cities.map((city) => (
-          <li key={city.name}>
-            {city.name + ': GMT'} {city.gmt >= 0 ? '+' + city.gmt : city.gmt}
-          </li>
-        ))}
-      </ul>
+      {cities.length === 0 ? (
+        <span>Cities not found</span>
+      ) : (
+        <ul>
+          {cities.map((city) => (
+            <li key={city.name}>
+              {city.name + ': GMT'} {city.gmt >= 0 ? '+' + city.gmt : city.gmt}
+            </li>
+          ))}
+        </ul>
+      )}
     </>
   );
 }
