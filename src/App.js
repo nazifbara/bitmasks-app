@@ -1,4 +1,6 @@
+import SearchIcon from './search.svg';
 import { useState } from 'react';
+import styled from 'styled-components';
 
 function App() {
   const [cities, setCities] = useState([...CITIES]);
@@ -20,26 +22,104 @@ function App() {
   }
 
   return (
-    <>
-      <h1>Bitmasks App</h1>
+    <Container>
+      <AppName>Bitmasks App</AppName>
       <form onSubmit={handleSubmit}>
-        <input name="offset" type="number" />
-        <button>Find cities</button>
+        <Input name="offset" type="number" />
+        <Button>
+          <img src={SearchIcon} alt="search icon" />
+        </Button>
       </form>
       {cities.length === 0 ? (
         <span>Cities not found</span>
       ) : (
-        <ul>
+        <List>
           {cities.map((city) => (
-            <li key={city.name}>
+            <ListItem key={city.name}>
               {city.name + ': GMT'} {city.gmt >= 0 ? '+' + city.gmt : city.gmt}
-            </li>
+            </ListItem>
           ))}
-        </ul>
+        </List>
       )}
-    </>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  padding: 0.625rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 37.5rem;
+  margin: 0 auto;
+  color: #fefae0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+`;
+
+const AppName = styled.h1`
+  color: #bc6c25;
+  font-size: 2rem;
+  font-weight: 700;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: transparent;
+  text-shadow: 0px 0px 0.125rem #bc6c25;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+`;
+
+const Input = styled.input`
+  border-bottom: 0.2rem solid #606c38;
+  border-left: 0.2rem solid #606c38;
+  border-top: 0.2rem solid #606c38;
+  border-right: none;
+  background-color: #fefae0;
+  padding: 0.2rem 0.625rem;
+  color: #606c38;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Button = styled.button`
+  border-bottom: 0.2rem solid #606c38;
+  border-right: 0.2rem solid #606c38;
+  border-top: 0.2rem solid #606c38;
+  border-left: none;
+  padding: 0.2rem 0.625rem;
+  background-color: #606c38;
+`;
+
+const List = styled.ul`
+  list-style-type: none;
+  margin: 2rem 0 0 0;
+  padding: 0;
+  width: 100%;
+
+  & > li:not(:last-child) {
+    margin-bottom: 10px;
+  }
+`;
+
+const ListItem = styled.li`
+  background-color: #bc6c25;
+  padding: 1rem 1.5rem;
+  border-radius: 0.2rem;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    content: '';
+    display: block;
+    width: 10px;
+    background-color: #606c38;
+  }
+`;
 
 const CITIES = [
   {
